@@ -14,9 +14,7 @@ const getDirs = (dirFrom, dirTo) => {
   });
 
   const filesTo = filesFrom.map(file => {
-    let newFile = file
-                .replace('.md', '.pdf')
-                .replace(dirFrom, dirTo);
+    let newFile = file.replace('.md', '.pdf').replace(dirFrom, dirTo);
     return newFile;
   });
 
