@@ -1,6 +1,6 @@
-const markdownpdf = require("markdown-pdf");
-const fs = require("fs");
-
+const markdownpdf = require('markdown-pdf');
+const fs = require('fs');
+const path = require('path');
 
 const convertToPdf = (dirFrom, dirTo, cssPath) => {
   const { filesFrom, filesTo } = getDirs(dirFrom, dirTo);
@@ -26,18 +26,17 @@ const getDirs = (dirFrom, dirTo) => {
 
 const handleConvert = (filesFrom, filesTo, cssPath) => {
   const options = {
-    cssPath: cssPath ? cssPath : './pdf.css',
+    cssPath: cssPath ? cssPath : path.resolve(__dirname, './pdf.css'),
     remarkable: {
         html: true,
         breaks: true,
-        syntax: [ 'footnote', 'sup', 'sub' ]
     }
   }
 
   markdownpdf(options)
     .from(filesFrom)
     .to(filesTo, () => {
-      console.log('Done');
+      console.log('Convert done');
     });
 }
 
